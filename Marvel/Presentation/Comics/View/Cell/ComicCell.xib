@@ -93,7 +93,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="5bo-ae-zrq" firstAttribute="bottom" secondItem="PQN-N8-TH6" secondAttribute="bottom" priority="250" constant="80" id="4qk-R6-V5i"/>
+                <constraint firstItem="5bo-ae-zrq" firstAttribute="bottom" secondItem="PQN-N8-TH6" secondAttribute="bottom" priority="250" constant="20" id="4qk-R6-V5i"/>
             </constraints>
             <connections>
                 <outlet property="ImageBottomConstraint" destination="k02-zT-W7O" id="5TY-jO-YtP"/>

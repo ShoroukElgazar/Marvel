@@ -41,7 +41,7 @@ class ComicCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10))
       
     }
     
@@ -73,7 +73,8 @@ class ComicCell: UITableViewCell {
     
     func setupConstraintHeight() {
         comicTitle.sizeToFit()
-        stackBottomConstraint.constant = comicTitle.frame.size.height + 50
+        comicReleaseDate.sizeToFit()
+        stackBottomConstraint.constant = comicTitle.frame.size.height + comicReleaseDate.frame.size.height + 15
         stackBottomConstraint.priority = .defaultHigh
         ImageBottomConstraint.priority = .defaultLow
         layoutIfNeeded()
