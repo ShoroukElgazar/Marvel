@@ -56,7 +56,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UITableVie
     }
     
     private func handleComicsPrefetching() {
-        self.limit += 15
         isFetchingData = true
     }
     

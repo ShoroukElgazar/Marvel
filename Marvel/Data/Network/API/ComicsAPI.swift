@@ -45,7 +45,7 @@ extension ComicsAPI: MoyaTargetType {
              return ["ts":"1",
              "apikey":"88a25849ee92a0f523dae79a4dc36876",
              "hash":"0337fb3777a2a352e5ec44cf4988166e",
-             "limit": limit
+             "offset": limit
              ]
         case .comicsDetails:
             return ["ts":"1",

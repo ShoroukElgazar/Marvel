@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     var comic: Comic?
     var oldValue : Int = -1
     var isFetchingData = false
-    var limit = 15
+    var limit = 0
     var didSelectComic = false
     var isDetailsFetching = false
     var activityView: UIActivityIndicatorView?
@@ -79,12 +79,12 @@ class ViewController: UIViewController {
 extension ViewController {
     
    private func handleFetchingAllComics(comics: [Comic]) {
+        self.limit += 20
         self.comics = []
         self.allComics.append(contentsOf: comics)
         self.comics = self.allComics
         self.isFetchingData = false
         self.comicsTableView.reloadData()
-        self.allComics = []
     }
     
     private func handleFetchingComicDetails() {
