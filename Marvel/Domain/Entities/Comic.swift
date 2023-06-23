@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Comic: Codable {
+struct Comic: Codable,Hashable {
     let id: Int
     let title: String
     let thumbnail: String

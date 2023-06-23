@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DefaultComicsDataSrc {
-    func fetchComics(limit: Int) async throws -> AppResponseDTO<ComicsResponseDTO>?
+    func fetchComics(limit: Int) async throws -> [ComicResponseDTO]?
     func fetchComicDetails(id: Int)  async throws -> AppResponseDTO<ComicDetailsResponseDTO>?
 }
 
@@ -20,9 +20,9 @@ class ComicsRemoteDataSrc: DefaultComicsDataSrc{
         self.apiService = apiService
     }
     
-   func fetchComics(limit: Int) async throws -> AppResponseDTO<ComicsResponseDTO>? {
-            let comics: AppResponseDTO<ComicsResponseDTO> = try await apiService.request(target: .comics(page: limit))
-            return comics
+   func fetchComics(limit: Int) async throws -> [ComicResponseDTO]? {
+       let comics: AppResponseDTO<ComicsResponseDTO> = try await apiService.request(target: .comics(page: limit))
+       return comics.data.comics
        
     }
     
@@ -42,8 +42,8 @@ class ComicsCachedDataSrc: DefaultComicsDataSrc{
         self.apiService = apiService
     }
     
-    func fetchComics(limit: Int) async throws -> AppResponseDTO<ComicsResponseDTO>? {
-       guard let comics: AppResponseDTO<ComicsResponseDTO> =
+    func fetchComics(limit: Int) async throws -> [ComicResponseDTO]? {
+       guard let comics: [ComicResponseDTO] =
             cache.getCachedComics() else {
            return nil
        }

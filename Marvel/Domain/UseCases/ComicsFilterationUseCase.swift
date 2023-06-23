@@ -18,11 +18,12 @@ class ComicsFilterationUseCase: DefaultComicsFilterationUseCase {
     }
     
     func filterComics(text: String,limit: Int) async throws -> [Comic]{
-            let comics = try await comicsRepo.fetchFilteredComics(limit: limit)
-          let filteredComics = comics.filter{ comic in
-              (comic.title.lowercased().contains(text.lowercased()))
-            }
-            return filteredComics
+        let comics = try await comicsRepo.fetchFilteredComics(limit: limit)
+
+        let filteredComics = Array(Set(comics.filter { comic in
+               comic.title.lowercased().contains(text.lowercased())
+        }))
+        return filteredComics
     }
     
     func execute(limit: Int,text: String) async throws -> T {

@@ -19,8 +19,10 @@ struct ComicsRepo: DefaultComicsRepository{
         guard let items = comics else{
                 return []
             }
-            cache.cacheComics(comics: items)
-            let list = items.data.comics
+        var cachedComics: [ComicResponseDTO] = cache.getCachedComics() ?? []
+          cachedComics.append(contentsOf: items)
+            cache.cacheComics(comics: cachedComics)
+            let list = items
             for comic in list{
                 comicList.append(comic.toDomain())
             }
@@ -45,7 +47,7 @@ struct ComicsRepo: DefaultComicsRepository{
     func fetchFilteredComics(limit: Int) async throws-> [Comic] {
         var comicList : [Comic] = []
             let comics = try await cachedSrc.fetchComics(limit: limit)
-        guard let items = comics?.data.comics else{
+        guard let items = comics else{
                 return []
             }
             for comic in items{

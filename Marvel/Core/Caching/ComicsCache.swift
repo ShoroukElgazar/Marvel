@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DefaultComicsCache {
-    func getCachedComics() -> AppResponseDTO<ComicsResponseDTO>?
+    func getCachedComics() -> [ComicResponseDTO]?
     func getCachedDetails(id: Int) -> AppResponseDTO<ComicDetailsResponseDTO>?
 }
 
@@ -16,15 +16,15 @@ class ComicsCache: DefaultComicsCache{
     
     static let shared: ComicsCache = .init()
 
-    private let comicsCache = AppCache<String, AppResponseDTO<ComicsResponseDTO>>()
+    private let comicsCache = AppCache<String,[ComicResponseDTO]>()
     private let detailsCache = AppCache<String, AppResponseDTO<ComicDetailsResponseDTO>>()
     
     
-    func cacheComics(comics: AppResponseDTO<ComicsResponseDTO>) {
+    func cacheComics(comics: [ComicResponseDTO]) {
         comicsCache.insert(comics, forKey: "ComicsCache")
     }
 
-    func getCachedComics() -> AppResponseDTO<ComicsResponseDTO>? {
+    func getCachedComics() -> [ComicResponseDTO]? {
         return comicsCache.value(forKey: "ComicsCache")
     }
     
