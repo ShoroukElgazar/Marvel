@@ -35,12 +35,7 @@ class ComicsRemoteDataSrc: DefaultComicsDataSrc{
 }
 
 class ComicsCachedDataSrc: DefaultComicsDataSrc{
-    public let apiService: ComicsAPIProvider
     @Injected(\.comicsCache) var cache
-    
-    init(apiService: ComicsAPIProvider = ComicsAPIProvider.create() ) {
-        self.apiService = apiService
-    }
     
     func fetchComics(limit: Int) async throws -> [ComicResponseDTO]? {
        guard let comics: [ComicResponseDTO] =
