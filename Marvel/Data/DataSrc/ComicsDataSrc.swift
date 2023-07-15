@@ -14,7 +14,6 @@ protocol DefaultComicsDataSrc {
 
 class ComicsRemoteDataSrc: DefaultComicsDataSrc{
     public let apiService: ComicsAPIProvider
-    @Injected(\.comicsCache) var cache
     
     init(apiService: ComicsAPIProvider = ComicsAPIProvider.create() ) {
         self.apiService = apiService
